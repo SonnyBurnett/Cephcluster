@@ -1,5 +1,5 @@
 # Cephcluster
-Create Ceph Cluster using:
+Create Ceph Cluster
 
 Vagrant is used for creating the Centos7 systems with as settings:
 - network host-only adapter with ip adresses in the range 192.168.33.8x
