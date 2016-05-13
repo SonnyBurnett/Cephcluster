@@ -22,7 +22,7 @@ Add modules to puppet:
 - puppet module install saz-sudo
 - puppet module install saz-timezone
 
-Enable auto sign of certificates:
+Enable auto signing of certificates:
 - vi /etc/puppetlabs/puppet/puppet.conf 
 - add 'autosign = true’ in [master] section.
 
