@@ -12,7 +12,7 @@ IP adres bepalen:
 - # ip add
 - Look for IP address with layout: 192.168.33.* 
   - If this is 192.168.33.100 no action required before 'vagrant up’
-  - If other IP adres: change ip address of learning.puppetlabs.vm in artifactory/Vagrantfile and ceph/Vagrantfile
+  - If other IP adres: change ip address of learning.puppetlabs.vm in vagrant/artifactory/Vagrantfile and vagrant/ceph/Vagrantfile
 
 Add modules to puppet:
 - Install ceph and artifactory module
