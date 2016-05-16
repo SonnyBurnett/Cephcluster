@@ -43,9 +43,9 @@ cephnodes = [
 ]
 
 Vagrant.configure(2) do |config|
+    config.vm.box = "ceph/centos7"
     cephmons.each do |opts|
         config.vm.define opts[:name] do |cephmon|
-            cephmon.vm.box = "centos/7"  
             cephmon.vm.network "private_network", ip: opts[:ipaddress]
             cephmon.vm.synced_folder ".","/vagrant", type: "virtualbox", disabled: true
             cephmon.vm.synced_folder ".","/home/vagrant/sync", type: "virtualbox", disabled: true
@@ -63,7 +63,6 @@ Vagrant.configure(2) do |config|
    
     cephnodes.each do |opts|
         config.vm.define opts[:name] do |cephnode|
-            cephnode.vm.box = "centos/7"  
             cephnode.vm.network "private_network", ip: opts[:ipaddress]
             cephnode.vm.synced_folder ".","/vagrant", type: "virtualbox", disabled: true
             cephnode.vm.synced_folder ".","/home/vagrant/sync", type: "virtualbox", disabled: true
@@ -71,10 +70,10 @@ Vagrant.configure(2) do |config|
                 vb.memory = 1024
                 vb.name = opts[:name]
                 disk = "#{virtualbox_vm_basedir}/#{opts[:name]}/#{opts[:file_to_disk]}"
-                unless File.exist?(disk)
-                    vb.customize ['createhd', '--filename', disk, '--variant', 'Standard', '--size', 1 * 1024]
-                end
-                vb.customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
+                #unless File.exist?(disk)
+                #    vb.customize ['createhd', '--filename', disk, '--variant', 'Standard', '--size', 1 * 1024]
+                #end
+                #vb.customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
             end
             cephnode.vm.hostname = opts[:hostname]
             cephnode.vm.provision "shell",
@@ -85,13 +84,12 @@ Vagrant.configure(2) do |config|
     end
    
    config.vm.define :cephmaster do |cephmaster|
-      cephmaster.vm.box = "centos/7"  
-	  cephmaster.vm.network "private_network", ip: "192.168.33.80"
-	  cephmaster.vm.synced_folder ".","/vagrant", type: "virtualbox", disabled: true
-	  cephmaster.vm.synced_folder ".","/home/vagrant/sync", type: "virtualbox", disabled: true
-	  cephmaster.vm.provider "virtualbox" do |vb|
-	     vb.memory = 2048
-	     vb.name = "cephmaster"
+      cephmaster.vm.network "private_network", ip: "192.168.33.80"
+      cephmaster.vm.synced_folder ".","/vagrant", type: "virtualbox", disabled: true
+      cephmaster.vm.synced_folder ".","/home/vagrant/sync", type: "virtualbox", disabled: true
+      cephmaster.vm.provider "virtualbox" do |vb|
+        vb.memory = 2048
+        vb.name = "cephmaster"
       end
       cephmaster.vm.hostname = "cephmaster.cluster1"	  
       cephmaster.vm.provision "shell",
