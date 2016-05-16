@@ -32,7 +32,7 @@ Create ceph node groups:
 - Create groups
   - Ceph_master
     - Add rule: fact = fqdn, Operator = matches regex, value = cephmaster
-    - Add classes: ceph::centos_basics, ceph::ceph_base
+    - Add classes: ceph::centos_basics, ceph::ceph_base, ceph::ceph_master
   - Ceph_monitors
     - Add rule: fact = fqdn, Operator = matches regex, value = cephmon
     - Add classes: ceph::centos_basics, ceph::ceph_base
