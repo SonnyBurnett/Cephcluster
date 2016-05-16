@@ -13,7 +13,7 @@ Puppet is used to provision the Ceph software and change configuration
 Prerequisites:
 - Vagrant and Virtualbox installed on your system. 
 - Puppetserver running in Virtualbox 
-  - ipaddress 192.168.33.100
+  - Host only adapter enabled with ipaddress 192.168.33.100
   - auto signing client certificates enabled
 - Note: See prerequisites.txt if you need to create it.
 
