@@ -1,7 +1,25 @@
-As preparation the following actions can be performed to comply to the prerequisites:
+As preparation the following actions can be performed to comply to the prerequisites.
+Vagrant + Virtualbox:
 - Install Virtualbox, link: https://www.virtualbox.org/wiki/Downloads.
 - Install Vagrant, link: https://www.vagrantup.com/downloads.html.
 - Install Git Bash (required on windows)
 - Install Putty or other ssh client you prefer
 - Provision a Centos7 box using 'vagrant up' and the Vagrantfile at cephcluster/vagrant/centos7/Vagrantfile. With this action the host only adapter vboxnet1 is created. Als the Centos7 box is copied from the Vagrant repo to your system which will speed up creating the Ceph cluster.
+
+Puppet:
 - Get a copy of the puppet learning vm on your system, from link: https://puppet.com/download-learning-vm. Unpack and follow instructions in ‘readme.rtf’.
+- Import in virtualbox
+- Add network Host only adapter, use vboxnet1 (same as vagrant centos7 system just created with Vagrant)
+- Start vm
+- IP adres bepalen: 
+  - Logon with root
+  - # ip add
+  - Look for IP address with layout: 192.168.33.* 
+    - If this is 192.168.33.100 no action required before 'vagrant up’
+    - If other IP adres: change ip address of learning.puppetlabs.vm in vagrant/artifactory/Vagrantfile and vagrant/ceph/Vagrantfile
+- Enable auto signing of certificates:
+  - vi /etc/puppetlabs/puppet/puppet.conf 
+  - add 'autosign = true’ in [master] section.
+- Create user/password (cephuser/87654321) to copy files to/from learning vm (disabled for root user), commands:
+  - adduser cephuser
+  - passwd cephuser
