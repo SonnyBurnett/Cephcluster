@@ -1,0 +1,7 @@
+As preparation the following actions can be performed to comply to the prerequisites:
+- Install Virtualbox, link: https://www.virtualbox.org/wiki/Downloads.
+- Install Vagrant, link: https://www.vagrantup.com/downloads.html.
+- Install Git Bash (required on windows)
+- Install Putty or other ssh client you prefer
+- Provision a Centos7 box using 'vagrant up' and the Vagrantfile at cephcluster/vagrant/centos7/Vagrantfile. With this action the host only adapter vboxnet1 is created. Als the Centos7 box is copied from the Vagrant repo to your system which will speed up creating the Ceph cluster.
+- Get a copy of the puppet learning vm on your system, from link: https://puppet.com/download-learning-vm. Unpack and follow instructions in ‘readme.rtf’.
